@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Дружественные числа</title>
+  <script>
+    function findFriendlyNumbers() {
+      var start = parseInt(document.getElementById("start").value);
+      var end = parseInt(document.getElementById("end").value);
+      
+      var result = [];
+      
+      for (var num1 = start; num1 <= end; num1++) {
+        var num2 = sumOfDivisors(num1);
+        
+        if (num2 > num1 && sumOfDivisors(num2) === num1) {
+          result.push([num1, num2]);
+        }
+      }
+      
+      if (result.length === 0) {
+        document.getElementById("result").innerHTML = "В указанном диапазоне нет дружественных чисел.";
+      } else {
+        document.getElementById("result").innerHTML = "Дружественные числа в указанном диапазоне:<br>" + result.join("<br>");
+      }
+    }
+    
+    function sumOfDivisors(num) {
+      var sum = 0;
+      
+      for (var i = 1; i <= num / 2; i++) {
+        if (num % i === 0) {
+          sum += i;
+        }
+      }
+      
+      return sum;
+    }
+  </script>
+</head>
+<body>
+  <h1>Дружественные числа</h1>
+  
+  <label for="start">Начало диапазона:</label>
+  <input type="number" id="start"><br>
+  
+  <label for="end">Конец диапазона:</label>
+  <input type="number" id="end"><br>
+  
+  <button onclick="findFriendlyNumbers()">Найти дружественные числа</button>
+  
+  <p id="result"></p>
+</body>
+</html>
