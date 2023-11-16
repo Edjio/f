@@ -15,8 +15,8 @@
 
   <script>
     function calculateDifference() {
-      String numbersInput = document.getElementById("numbers");
-      Array numbers = numbersInput.value.split(" ").map(Number);
+      var numbersInput = document.getElementById("numbers");
+      var numbers = numbersInput.value.split(" ").map(Number);
 
       var max = Math.max.apply(null, numbers);
       var min = Math.min.apply(null, numbers);
