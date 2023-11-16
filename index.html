@@ -1,53 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Дружественные числа</title>
-  <script>
-    function findFriendlyNumbers() {
-      var start = parseInt(document.getElementById("start").value);
-      var end = parseInt(document.getElementById("end").value);
-      
-      var result = [];
-      
-      for (var num1 = start; num1 <= end; num1++) {
-        var num2 = sumOfDivisors(num1);
-        
-        if (num2 > num1 && sumOfDivisors(num2) === num1) {
-          result.push([num1, num2]);
-        }
-      }
-      
-      if (result.length === 0) {
-        document.getElementById("result").innerHTML = "В указанном диапазоне нет дружественных чисел.";
-      } else {
-        document.getElementById("result").innerHTML = "Дружественные числа в указанном диапазоне:<br>" + result.join("<br>");
-      }
-    }
-    
-    function sumOfDivisors(num) {
-      var sum = 0;
-      
-      for (var i = 1; i <= num / 2; i++) {
-        if (num % i === 0) {
-          sum += i;
-        }
-      }
-      
-      return sum;
-    }
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вычисление разности между максимальными и минимальными числами</title>
 </head>
 <body>
-  <h1>Дружественные числа</h1>
-  
-  <label for="start">Начало диапазона:</label>
-  <input type="number" id="start"><br>
-  
-  <label for="end">Конец диапазона:</label>
-  <input type="number" id="end"><br>
-  
-  <button onclick="findFriendlyNumbers()">Найти дружественные числа</button>
-  
-  <p id="result"></p>
+  <h1>Вычисление разности между максимальными и минимальными числами</h1>
+  <form>
+    <label for="numbers">Введите 10 вещественных чисел:</label><br>
+    <input type="text" id="numbers" required><br>
+    <button type="button" onclick="calculateDifference()">Вычислить разность</button>
+  </form>
+
+  <script>
+    function calculateDifference() {
+      String numbersInput = document.getElementById("numbers");
+      Array numbers = numbersInput.value.split(" ").map(Number);
+
+      var max = Math.max.apply(null, numbers);
+      var min = Math.min.apply(null, numbers);
+      var difference = max - min;
+
+      alert("Разность между максимальным и минимальным числами: " + difference);
+    }
+  </script>
 </body>
 </html>
